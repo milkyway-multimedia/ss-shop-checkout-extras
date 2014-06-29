@@ -1,0 +1,15 @@
+{
+    "name"             : "milkyway-multimedia/silverstripe-shop-checkout-extras",
+    "description"      : "Contains a few new components that you can add to the Silverstripe Shop Checkout Config.",
+    "type"             : "silverstripe-module",
+    "require"          : {
+        "burnbright/silverstripe-shop": "dev-master"
+    },
+    "extra"            : {
+        "installer-name": "shop-checkout-extras"
+    },
+    "config"           : {
+        "process-timeout": 600
+    },
+    "minimum-stability": "dev"
+}
