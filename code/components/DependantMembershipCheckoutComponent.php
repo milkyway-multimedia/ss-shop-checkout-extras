@@ -5,7 +5,7 @@
  * @package reggardocolaianni.com.au
  * @author Mellisa Hankins <mell@milkywaymultimedia.com.au>
  */
-class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent implements HasRequireIfFields {
+class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent implements \Milkyway\Shop\CheckoutExtras\Contracts\ConditionalRequiredFields {
     protected $checked;
 
     public function __construct($confirmed = true, $validator = null, $checked = true) {

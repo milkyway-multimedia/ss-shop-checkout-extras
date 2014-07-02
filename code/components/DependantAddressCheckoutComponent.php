@@ -7,7 +7,7 @@
  * @package reggardocolaianni.com.au
  * @author Mellisa Hankins <mell@milkywaymultimedia.com.au>
  */
-abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponent implements HasRequireIfFields
+abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponent implements \Milkyway\Shop\CheckoutExtras\Contracts\ConditionalRequiredFields
 {
     public function getFormFields(Order $order)
     {
@@ -19,7 +19,7 @@ abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponen
             CompositeField::create(
                 parent::getFormFields($order)
             )
-                ->setName($this->addresstype . 'Address-Holder')
+                ->setName($this->addresstype . 'Address')
                 ->setAttribute('data-hide-if', '[name=' . get_class($this) . '_' . $field . ']:checked')
         );
     }
