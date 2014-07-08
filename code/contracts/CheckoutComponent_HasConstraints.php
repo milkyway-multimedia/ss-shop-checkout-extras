@@ -6,6 +6,6 @@
  * @package reggardocolaianni.com
  * @author Mellisa Hankins <mell@milkywaymultimedia.com.au>
  */
-interface ConditionalRequiredFields {
-
+interface CheckoutComponent_HasConstraints {
+    public function getConstraints(\Order $order);
 } 

@@ -49,4 +49,18 @@ class BaseCheckoutComponentConfig extends SinglePageCheckoutComponentConfig {
         }
         return $this;
     }
+
+    public function getConstraints() {
+        $constraints = array();
+
+        foreach($this->getComponents() as $component) {
+            if($component instanceof CheckoutComponent_Namespaced)
+                $component = $component->Proxy();
+
+            if($component instanceof \Milkyway\Shop\CheckoutExtras\Contracts\CheckoutComponent_HasConstraints)
+                $constraints = array_merge($constraints, $component->getConstraints($this->order));
+        }
+
+        return $constraints;
+    }
 } 

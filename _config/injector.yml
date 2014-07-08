@@ -1,0 +1,13 @@
+---
+Name: shop-checkout-extras-injector
+After: 'shop/*'
+---
+Injector:
+  CheckoutPage_Controller:
+    class: \Milkyway\Shop\CheckoutExtras\Checkout\Controller
+
+  PaymentForm:
+    class: \Milkyway\Shop\CheckoutExtras\Checkout\PaymentForm
+
+  CheckoutComponentValidator:
+    class: \Milkyway\Shop\CheckoutExtras\Validators\CheckoutComponentValidator

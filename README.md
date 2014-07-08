@@ -2,6 +2,8 @@ Silverstripe Shop - Checkout Extras
 ======
 **Checkout Extras** contains a few new components that you can add to the Silverstripe Shop Checkout Config.
 
+It requires the mwm-zen-forms module for the require-if validation.
+
 ## Install
 Add the following to your composer.json file
 ```

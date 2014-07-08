@@ -7,7 +7,7 @@
  * @package reggardocolaianni.com.au
  * @author Mellisa Hankins <mell@milkywaymultimedia.com.au>
  */
-abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponent implements \Milkyway\Shop\CheckoutExtras\Contracts\ConditionalRequiredFields
+abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponent implements \Milkyway\Shop\CheckoutExtras\Contracts\CheckoutComponent_HasConstraints
 {
     public function getFormFields(Order $order)
     {
@@ -40,15 +40,15 @@ abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponen
         }
     }
 
-    public function getRequiredIf(Order $order) {
+    public function getConstraints(Order $order) {
         $required = parent::getRequiredFields($order);
-        $requiredIf = array();
+        $constraints = array();
         $namespace = get_class($this);
 
         foreach($required as $requirement)
-            $requiredIf[$namespace . '_' . $requirement] = $namespace . '_' . $this->addresstype . 'ToSameAddress:not(:checked)';
+            $constraints[$namespace . '_' . $requirement] = new Milkyway\ZenForms\Constraints\RequiredIf($namespace . '_' . $this->addresstype . 'ToSameAddress', 'not(:checked)');
 
-        return $requiredIf;
+        return $constraints;
     }
 }
 
