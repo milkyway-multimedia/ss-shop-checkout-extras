@@ -2,12 +2,10 @@
 
 /**
  * Milkyway Multimedia
- * DependantBillingAddressCheckoutComponent.php
- *
+ * LoginCheckoutComponent.php
+ * @todo Implement...
  * @package reggardocolaianni.com.au
  * @author Mellisa Hankins <mell@milkywaymultimedia.com.au>
  */
-class LoginCheckoutComponent extends CheckoutComponent
-{
 
-}
+?>
