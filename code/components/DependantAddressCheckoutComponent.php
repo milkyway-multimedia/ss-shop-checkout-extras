@@ -38,6 +38,20 @@ abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponen
             if(!$order->BillingAddressID)
                 $order->BillingAddressID = $order->{$this->useAddresstype."AddressID"};
         }
+
+        // FIX for missing name fields
+        $fields = array_intersect_key($data, array_flip(['FirstName', 'Surname', 'Email']));
+        $changed = false;
+        foreach($fields as $field => $value) {
+            if(!$order->{$this->addresstype."Address"}->$field)
+            {
+                $order->{$this->addresstype . "Address"}->$field = $value;
+                $changed = true;
+            }
+        }
+
+        if($changed)
+            $order->{$this->addresstype."Address"}->write();
     }
 
     public function getConstraints(Order $order) {
@@ -57,10 +71,20 @@ class DependantShippingAddressCheckoutComponent extends DependantAddressCheckout
     protected $addresstype = "Shipping";
     protected $useAddresstype = "Billing";
 
+    protected $dependson = array(
+        'CustomerDetailsCheckoutComponent',
+        'BillingAddressCheckoutComponent',
+    );
+
 }
 
 class DependantBillingAddressCheckoutComponent extends DependantAddressCheckoutComponent {
 
     protected $addresstype = "Billing";
     protected $useAddresstype = "Shipping";
+
+    protected $dependson = array(
+        'CustomerDetailsCheckoutComponent',
+        'ShippingAddressCheckoutComponent',
+    );
 }
