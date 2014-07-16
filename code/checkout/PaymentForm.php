@@ -13,4 +13,12 @@ class PaymentForm extends \PaymentForm {
         if($this->Validator && $this->Validator instanceof \CheckoutComponentValidator)
             $this->Validator = \CheckoutComponentValidator::create($this->config);
     }
+
+    public function FormName() {
+        $class = $this->class;
+        $this->class = 'PaymentForm';
+        $name = parent::FormName();
+        $this->class = $class;
+        return $name;
+    }
 } 

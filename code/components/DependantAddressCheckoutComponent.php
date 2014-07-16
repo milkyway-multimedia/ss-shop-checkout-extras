@@ -29,7 +29,7 @@ abstract class DependantAddressCheckoutComponent extends AddressCheckoutComponen
     }
 
     public function setData(Order $order, array $data) {
-        if(isset($data[$this->addresstype . 'ToSameAddress'])) {
+        if(!isset($data[$this->addresstype . 'ToSameAddress'])) {
             parent::setData($order, $data);
         }
         else {
