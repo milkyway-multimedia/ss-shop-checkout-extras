@@ -1,4 +1,4 @@
-<?php namespace Milkyway\Shop\CheckoutExtras\Contracts;
+<?php namespace Milkyway\SS\Shop\CheckoutExtras\Contracts;
 /**
  * Milkyway Multimedia
  * ConditionalRequiredFields.php

@@ -4,10 +4,10 @@ After: 'shop/*'
 ---
 Injector:
   CheckoutPage_Controller:
-    class: \Milkyway\Shop\CheckoutExtras\Checkout\Controller
+    class: \Milkyway\SS\Shop\CheckoutExtras\Checkout\Controller
 
   PaymentForm:
-    class: \Milkyway\Shop\CheckoutExtras\Checkout\PaymentForm
+    class: \Milkyway\SS\Shop\CheckoutExtras\Checkout\PaymentForm
 
   CheckoutComponentValidator:
-    class: \Milkyway\Shop\CheckoutExtras\Validators\CheckoutComponentValidator
+    class: \Milkyway\SS\Shop\CheckoutExtras\Validators\CheckoutComponentValidator

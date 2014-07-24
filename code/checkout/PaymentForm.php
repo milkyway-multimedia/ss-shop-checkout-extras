@@ -1,4 +1,4 @@
-<?php namespace Milkyway\Shop\CheckoutExtras\Checkout;
+<?php namespace Milkyway\SS\Shop\CheckoutExtras\Checkout;
 /**
  * Milkyway Multimedia
  * PaymentForm.php

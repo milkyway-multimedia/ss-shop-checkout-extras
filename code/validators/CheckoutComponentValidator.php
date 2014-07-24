@@ -1,4 +1,4 @@
-<?php namespace Milkyway\Shop\CheckoutExtras\Validators;
+<?php namespace Milkyway\SS\Shop\CheckoutExtras\Validators;
 /**
  * Milkyway Multimedia
  * CheckoutComponentValidator.php

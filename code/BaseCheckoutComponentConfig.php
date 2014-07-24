@@ -57,7 +57,7 @@ class BaseCheckoutComponentConfig extends SinglePageCheckoutComponentConfig {
             if($component instanceof CheckoutComponent_Namespaced)
                 $component = $component->Proxy();
 
-            if($component instanceof \Milkyway\Shop\CheckoutExtras\Contracts\CheckoutComponent_HasConstraints)
+            if($component instanceof \Milkyway\SS\Shop\CheckoutExtras\Contracts\CheckoutComponent_HasConstraints)
                 $constraints = array_merge($constraints, $component->getConstraints($this->order));
         }
 

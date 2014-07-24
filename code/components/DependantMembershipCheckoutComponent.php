@@ -5,7 +5,7 @@
  * @package reggardocolaianni.com.au
  * @author Mellisa Hankins <mell@milkywaymultimedia.com.au>
  */
-class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent implements \Milkyway\Shop\CheckoutExtras\Contracts\ConditionalRequiredFields {
+class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent implements \Milkyway\SS\Shop\CheckoutExtras\Contracts\CheckoutComponent_HasConstraints {
     protected $checked;
 
     public function __construct($confirmed = true, $validator = null, $checked = true) {
@@ -52,16 +52,15 @@ class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent i
         }
     }
 
-    public function getRequiredIf(Order $order) {
-//        $required = parent::getRequiredFields($order);
-        $required = array('Password');
-        $requiredIf = array();
+    public function getConstraints(Order $order) {
+        $required = parent::getRequiredFields($order);
+        $constraints = array();
         $namespace = get_class($this);
 
         foreach($required as $requirement)
-            $requiredIf[$namespace . '_' . $requirement] = $namespace . '_RegisterAnAccount:checked';
+            $constraints[$namespace . '_' . $requirement] = new Milkyway\SS\ZenForms\Constraints\RequiredIf($namespace . '_' . $this->addresstype . 'ToSameAddress', 'not(:checked)');
 
-        return $requiredIf;
+        return $constraints;
     }
 
     public function setChecked($flag = true) {
