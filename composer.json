@@ -1,5 +1,5 @@
 {
-    "name"             : "milkyway-multimedia/silverstripe-shop-checkout-extras",
+    "name"             : "milkyway-multimedia/ss-shop-checkout-extras",
     "description"      : "Contains a few new components that you can add to the Silverstripe Shop Checkout Config.",
     "type"             : "silverstripe-module",
     "require"          : {
