@@ -1,21 +1,36 @@
-<?php /**
+<?php
+
+/**
  * Milkyway Multimedia
  * DependantMembershipCheckoutComponent.php
  *
- * @package reggardocolaianni.com.au
+ * @package milkyway-multimedia/ss-shop-checkout-extras
  * @author Mellisa Hankins <mell@milkywaymultimedia.com.au>
  */
-class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent implements \Milkyway\SS\Shop\CheckoutExtras\Contracts\CheckoutComponent_HasConstraints {
+
+use Milkyway\SS\Shop\CheckoutExtras\Contracts\CheckoutComponent_HasConstraints as HasConstraints;
+use Milkyway\SS\ZenForms\Constraints\RequiredIf as RequiredIf;
+
+class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent implements HasConstraints
+{
     protected $checked;
 
-    public function __construct($confirmed = true, $validator = null, $checked = true) {
+    public function __construct($confirmed = true, $validator = null, $checked = true)
+    {
         $this->checked = $checked;
         parent::__construct($confirmed, $validator);
     }
 
     public function getFormFields(Order $order)
     {
-        $checkbox = CheckboxField::create('RegisterAnAccount', _t('DependantMembershipCheckoutComponent.REGISTER_ACCOUNT', 'Register an account'), $this->checked);
+        $fields = parent::getFormFields($order);
+
+        if(!$fields->exists()) {
+            return $fields;
+        }
+
+        $checkbox = CheckboxField::create('RegisterAnAccount',
+            _t('DependantMembershipCheckoutComponent.REGISTER_ACCOUNT', 'Register an account'), $this->checked);
 
         return FieldList::create(
             $checkbox,
@@ -27,44 +42,45 @@ class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent i
         );
     }
 
-    public function getRequiredFields(Order $order) {
-        return array();
+    public function getRequiredFields(Order $order)
+    {
+        return [];
     }
 
-    public function validateData(Order $order, array $data) {
-        if(Member::currentUserID()){
-            return;
+    public function validateData(Order $order, array $data)
+    {
+        if (isset($data['RegisterAnAccount']) && $data['RegisterAnAccount']) {
+            return parent::validateData($order, $data);
         }
 
-        $result = new ValidationResult();
-
-        if(isset($data['RegisterAnAccount']) && !isset($data['Password'])) {
-            $result->error(_t('DependantMembershipCheckoutComponent.PASSWORD_REQUIRED', 'A password is required to register an account'));
-            throw new ValidationException($result);
-        }
-
-        parent::validateData($order, $data);
+        return ValidationResult::create();
     }
 
-    public function setData(Order $order, array $data) {
-        if(isset($data['RegisterAnAccount'])) {
+    public function setData(Order $order, array $data)
+    {
+        if (isset($data['RegisterAnAccount']) && $data['RegisterAnAccount']) {
             parent::setData($order, $data);
         }
     }
 
-    public function getConstraints(Order $order) {
-        $required = parent::getRequiredFields($order);
-        $constraints = array();
-        $namespace = get_class($this);
+    public function getConstraints(Order $order, $form = null)
+    {
+        $required = $this->getRequiredFields($order);
+        $constraints = [];
+        $namespace = $this->name();
 
-        foreach($required as $requirement)
-            $constraints[$namespace . '_' . $requirement] = new Milkyway\SS\ZenForms\Constraints\RequiredIf($namespace . '_' . $this->addresstype . 'ToSameAddress', 'not(:checked)');
+        foreach ($required as $requirement) {
+            $constraints[$namespace . '_' . $requirement] = new RequiredIf($namespace . '_RegisterAnAccount',
+                'not(:checked)');
+        }
 
         return $constraints;
     }
 
-    public function setChecked($flag = true) {
+    public function setChecked($flag = true)
+    {
         $this->checked = $flag;
+
         return $this;
     }
 } 

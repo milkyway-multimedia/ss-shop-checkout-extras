@@ -1,13 +1,10 @@
 ---
-Name: shop-checkout-extras-injector
+Name: shop-checkout-extras--injector
 After: 'shop/*'
 ---
 Injector:
-  CheckoutPage_Controller:
-    class: \Milkyway\SS\Shop\CheckoutExtras\Checkout\Controller
-
   PaymentForm:
-    class: \Milkyway\SS\Shop\CheckoutExtras\Checkout\PaymentForm
+    class: Milkyway\SS\Shop\CheckoutExtras\Checkout\PaymentForm
 
   CheckoutComponentValidator:
-    class: \Milkyway\SS\Shop\CheckoutExtras\Validators\CheckoutComponentValidator
+    class: Milkyway\SS\Shop\CheckoutExtras\Validators\CheckoutComponentValidator

@@ -2,31 +2,34 @@ Silverstripe Shop - Checkout Extras
 ======
 **Checkout Extras** contains a few new components that you can add to the Silverstripe Shop Checkout Config.
 
-It requires the mwm-zen-forms module for the require-if validation.
+### Features
+Here are the additional checkout components included.
+
+* DependantBillingAddressComponent: Use a check box to toggle between use shipping as billing
+* DependantShippingAddressComponent: Use a check box to toggle between use billing as shipping
+* DependantMembershipComponent: Use a check box to toggle between saving a password
+* AlternateAddressBookCheckoutComponent_Shipping: Allows you to select any of your saved addresses to ship to, with editing and saving new addresses etc.
+* DependantAlternateAddressBookCheckoutComponent_Shipping: As above, but with a check box to toggle between use shipping as billing
+* AlternateAddressBookCheckoutComponent_Billing: Allows you to select any of your saved addresses to bill to, with editing and saving new addresses etc.
+* DependantAlternateAddressBookCheckoutComponent_Shipping: As above, but with a check box to toggle between use billing as shipping
+* LoginCheckoutComponent: Adds a message field that will link to the login page
+* HtmlCheckoutComponent: Add custom html to the checkout form
 
 ## Install
 Add the following to your composer.json file
 ```
 
     "require"          : {
-		"milkyway-multimedia/silverstripe-shop-checkout-extras": "dev-master"
+		"milkyway-multimedia/ss-shop-checkout-extras": "~0.2"
 	}
 	
 ```
-
-## What's included?
-Here are the additional checkout components included.
-
-* DependantBillingAddressComponent: Use a check box to toggle between use shipping as billing
-* DependantShippingAddressComponent: Use a check box to toggle between use billing as shipping
-* DependantMembershipComponent: Use a check box to toggle between saving account details
-* LoginCheckoutComponent: Login at the checkout screen (can also open a modal window if configured - using zen forms)
 
 ## License 
 * MIT
 
 ## Version 
-* Version 0.1 - Alpha
+* Version 0.2 (Alpha)
 
 ## Contact
 #### Milkyway Multimedia
