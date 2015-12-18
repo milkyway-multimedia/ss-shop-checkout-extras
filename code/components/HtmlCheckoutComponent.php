@@ -29,7 +29,6 @@ class HtmlCheckoutComponent extends CheckoutComponent
 
     public function validateData(Order $order, array $data)
     {
-
     }
 
     public function getData(Order $order)
@@ -37,11 +36,12 @@ class HtmlCheckoutComponent extends CheckoutComponent
         return [];
     }
 
-    public function setData(Order $order, array $data) {
-
+    public function setData(Order $order, array $data)
+    {
     }
 
-    public function name() {
+    public function name()
+    {
         return $this->name;
     }
 }

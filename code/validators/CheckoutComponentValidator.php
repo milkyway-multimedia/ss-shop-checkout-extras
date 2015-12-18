@@ -12,14 +12,16 @@ use ZenValidator;
 use CheckoutComponentConfig;
 use BaseCheckoutComponentConfig;
 
-class CheckoutComponentValidator extends ZenValidator {
+class CheckoutComponentValidator extends ZenValidator
+{
     protected $config;
     protected $original;
     protected $originalClass = 'CheckoutComponentValidator';
 
     protected $hasOriginalConstraints = false;
 
-    public function __construct(CheckoutComponentConfig $config, $constraints = [], $parsleyEnabled = true, $defaultJS = null) {
+    public function __construct(CheckoutComponentConfig $config, $constraints = [], $parsleyEnabled = true, $defaultJS = null)
+    {
         $this->config = $config;
 
         parent::__construct($constraints, $parsleyEnabled, $defaultJS);
@@ -27,10 +29,11 @@ class CheckoutComponentValidator extends ZenValidator {
         $this->addRequiredFields($this->config->getRequiredFields());
     }
 
-    public function setForm($form) {
+    public function setForm($form)
+    {
         $return = parent::setForm($form);
 
-        if(!$this->hasOriginalConstraints) {
+        if (!$this->hasOriginalConstraints) {
             if ($this->config instanceof BaseCheckoutComponentConfig) {
                 $this->setConstraints($this->config->getConstraints($this->form));
             }
@@ -41,20 +44,24 @@ class CheckoutComponentValidator extends ZenValidator {
         return $return;
     }
 
-    public function php($data) {
+    public function php($data)
+    {
         return parent::php($data) && $this->original()->{__FUNCTION__}($data);
     }
 
-    public function fieldHasError($field) {
+    public function fieldHasError($field)
+    {
         return $this->original()->{__FUNCTION__}($field);
     }
 
-    protected function original() {
-        if(!$this->original)
+    protected function original()
+    {
+        if (!$this->original) {
             $this->original = new $this->originalClass($this->config);
+        }
 
         $this->original->setForm($this->form);
 
         return $this->original;
     }
-} 
+}

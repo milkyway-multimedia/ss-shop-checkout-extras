@@ -80,4 +80,4 @@ class BaseCheckoutComponentConfig extends SinglePageCheckoutComponentConfig
 
         return $constraints;
     }
-} 
+}

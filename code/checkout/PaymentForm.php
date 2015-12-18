@@ -32,4 +32,4 @@ class PaymentForm extends Original
 
         return $name;
     }
-} 
+}
