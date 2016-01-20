@@ -25,7 +25,7 @@ class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent i
     {
         $fields = parent::getFormFields($order);
 
-        if(!$fields->exists()) {
+        if (!$fields->exists()) {
             return $fields;
         }
 
@@ -83,4 +83,4 @@ class DependantMembershipCheckoutComponent extends MembershipCheckoutComponent i
 
         return $this;
     }
-} 
+}

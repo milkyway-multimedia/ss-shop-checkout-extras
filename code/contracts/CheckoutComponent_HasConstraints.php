@@ -10,6 +10,7 @@
 
 use Order;
 
-interface CheckoutComponent_HasConstraints {
+interface CheckoutComponent_HasConstraints
+{
     public function getConstraints(Order $order, $form = null);
-} 
+}

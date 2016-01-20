@@ -81,7 +81,7 @@ abstract class DependantAlternateAddressBookCheckoutComponent extends AlternateA
 
         $sameField = $this->name() . '_' . $this->addresstype . 'ToSameAddress';
 
-        if(empty($constraints)) {
+        if (empty($constraints)) {
             $required = parent::getRequiredFields($order);
             $namespace = $this->name();
 

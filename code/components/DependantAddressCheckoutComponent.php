@@ -89,7 +89,6 @@ class DependantShippingAddressCheckoutComponent extends DependantAddressCheckout
         'CustomerDetailsCheckoutComponent',
         'BillingAddressCheckoutComponent',
     ];
-
 }
 
 class DependantBillingAddressCheckoutComponent extends DependantAddressCheckoutComponent

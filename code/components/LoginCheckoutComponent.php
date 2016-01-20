@@ -22,7 +22,7 @@ class LoginCheckoutComponent extends HtmlCheckoutComponent
 
     public function getFormFields(Order $order)
     {
-        if(Member::currentUser() || $order->Member()->exists()) {
+        if (Member::currentUser() || $order->Member()->exists()) {
             return FieldList::create();
         }
 
@@ -36,7 +36,6 @@ class LoginCheckoutComponent extends HtmlCheckoutComponent
 
     public function validateData(Order $order, array $data)
     {
-
     }
 
     public function getData(Order $order)
@@ -44,7 +43,7 @@ class LoginCheckoutComponent extends HtmlCheckoutComponent
         return [];
     }
 
-    public function setData(Order $order, array $data) {
-
+    public function setData(Order $order, array $data)
+    {
     }
 }
