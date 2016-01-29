@@ -54,6 +54,21 @@ class CheckoutComponentValidator extends ZenValidator
         return $this->original()->{__FUNCTION__}($field);
     }
 
+    /**
+     * remove all constraints from a field
+     * @param String $field - name of the field to have constraints removed from
+     * @return $this
+     **/
+    function removeRequiredField($fieldName){
+        if($constraints = $this->getConstraints($fieldName)){
+            foreach ($constraints as $k => $v) {
+                $this->removeConstraint($fieldName, 'Constraint_required');
+			}
+        }
+
+        return $this;
+    }
+
     protected function original()
     {
         if (!$this->original) {
